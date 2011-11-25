@@ -1,5 +1,5 @@
 <?
-	include('db.php');
+	include('init.php');
 
 	#
 	# get a random key, unless one was passed in
@@ -87,6 +87,18 @@ body {
 	color: #fff;
 }
 
+#login {
+	position: absolute;
+	top: 5px;
+	left: 15px;
+	font: 18px/1.5 helvetica,sans-serif;
+	color: #fff;
+}
+
+#login a {
+	color: #fff;
+}
+
 </style>
 </head>
 <body>
@@ -100,6 +112,15 @@ body {
 <a href="/" id="random">Random</a>
 <a href="https://twitter.com/share" id="spread">Spread</a>
 <a href="/p/<?=$jam[id]?>" id="preserve">Preserve</a>
+
+<div id="login">
+<? if ($user){ ?>
+	Hi @<?=$user?><br />
+	<a href="/logout/" style="font-size: 12px">Log Out</a>
+<? }else{ ?>
+	<a href="/login/">Log In</a>
+<? } ?>
+</div>
 
 </body>
 </html>

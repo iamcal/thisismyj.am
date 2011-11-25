@@ -1,5 +1,5 @@
 <?
-	include('db.php');
+	include('init.php');
 
 	$out = '/var/www/thisismyj.am/img';
 

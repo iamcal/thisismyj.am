@@ -1,0 +1,5 @@
+ErrorDocument 404 /404.php
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteRule ^p/(\d+)$ /index.php?id=$1 [L]

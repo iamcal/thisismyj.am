@@ -41,7 +41,27 @@
 	include('head.txt');
 ?>
 
-<a href="/"><img src="/img/<?=$jam[filename]?>" width="<?=$jam[w]?>" height="<?=$jam[h]?>" id="thejam" /></a>
+<script>
+function info(){
+	document.getElementById('info-link').style.display = 'none';
+	document.getElementById('info-block').style.display = 'block';
+	return false;
+}
+</script>
+
+<div id="thejam">
+	<a href="/"><img src="/img/<?=$jam[filename]?>" width="<?=$jam[w]?>" height="<?=$jam[h]?>" /></a>
+
+	<div id="info-link">
+		<a href="#" onclick="return info();">?</a>
+	</div>
+	<div id="info-block" style="display: none">
+		from <a href="http://www.twitter.com/<?=$jam['user']?>">@<?=$jam['user']?></a>, 
+<? if ($jam['date_added']){ ?>
+		<?=date('Y-m-d H:i', $jam['date_added'])?>
+<? } ?>
+	</div>
+</div>
 
 <a href="/" id="random">Random</a>
 <a href="https://twitter.com/share?url=<?=urlencode("http://thisismyj.am/p/$jam[id]")?>" id="spread">Spread</a>

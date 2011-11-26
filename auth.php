@@ -39,6 +39,6 @@
 
 
 	set_user($user);
-	header('location: /?signedin=1');
+	header('location: /mine/?signedin=1');
 	exit;
 ?>

@@ -50,6 +50,8 @@
 		exit;
 	}
 
+	$subtitle = 'My Jams';
+
 	include('head.txt');
 
 ?>

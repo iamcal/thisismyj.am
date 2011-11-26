@@ -6,23 +6,47 @@
 
 By Cal Henderson / iamcal.com / @iamcal
 
+Apologies to Matt, Hannah, Ralph & Andreas - http://thisismyjam.com/
+
 -->
 <style>
 
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #000;
-	color: #fff;
+	background-color: #fff;
+	color: #333;
 	font: 16px/1.5 helvetica,sans-serif;
 }
 
 a {
-	color: #fff;
+	color: #333;
 }
 
 #header {
+	height: 43px;
+	background: black;
+	margin: 0;
+	padding: 0;
+	text-align: left;
 	border-top: 2px solid yellow;
+	box-shadow: 0 2px 6px #959595;
+	z-index: 5;
+	background: black;
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(40, 40, 40, 1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 1)), color-stop(100%,rgba(40, 40, 40, 1)));
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%,rgba(40, 40, 40, 1) 100%);
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 1) 0%,rgba(40, 40, 40, 1) 100%);
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 1) 0%,rgba(40, 40, 40, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#282828',GradientType=0 );
+	background: linear-gradient(top, rgba(0, 0, 0, 1) 0%,rgba(40, 40, 40, 1) 100%);
+
+	color: #fff;
+	font: 18px/1.5 helvetica,sans-serif;
+}
+
+#header a {
+	color: #fff;
 }
 
 #site_name {
@@ -54,7 +78,6 @@ a {
 	bottom: 5px;
 	left: 15px;
 	font: 22px/1.5 helvetica,sans-serif;
-	color: #fff;
 }
 
 #preserve {
@@ -62,7 +85,6 @@ a {
 	bottom: 5px;
 	right: 15px;
 	font: 22px/1.5 helvetica,sans-serif;
-	color: #fff;
 }
 
 #spread {
@@ -71,14 +93,12 @@ a {
 	left: 50%;
 	margin-left: -35px;
 	font: 22px/1.5 helvetica,sans-serif;
-	color: #fff;
 }
 
 #login {
 	position: absolute;
 	top: 5px;
 	left: 15px;
-	font: 18px/1.5 helvetica,sans-serif;
 	color: #fff;
 }
 
@@ -102,16 +122,15 @@ a {
 
 <div id="header">
 	<a href="/" id="site_name" title="This Is My Jam"></a>
-</div>
 
-<div id="login">
+	<div style="padding: 5px 0 0 20px">
 <? if ($user){ ?>
-	Hi @<?=$user?><br />
-	<div style="font-size: 12px">
-		<a href="/mine/">My Jams</a> | <a href="/logout/">Log Out</a>
-	</div>
+		Hi @<?=$user?>!
+		&nbsp;&nbsp;
+		<a href="/">Home</a> | <a href="/mine/">My Jams</a> | <a href="/logout/">Log Out</a>
 <? }else{ ?>
-	<a href="/login/">Log In</a>
+		<a href="/login/">Log In</a> via Twitter to upload your Jams
 <? } ?>
+	</div>
 </div>
 

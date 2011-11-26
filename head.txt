@@ -43,6 +43,7 @@ a {
 
 	color: #fff;
 	font: 18px/1.5 helvetica,sans-serif;
+	position: relative;
 }
 
 #header a {
@@ -71,6 +72,7 @@ a {
 	height: <?=$jam[h]?>px;
 	margin-top: -<?=$jam[h]/2?>px;
 	margin-left: -<?=$jam[w]/2?>px;
+	z-index: 1;
 }
 
 #random {
@@ -78,6 +80,8 @@ a {
 	bottom: 5px;
 	left: 15px;
 	font: 22px/1.5 helvetica,sans-serif;
+	z-index: 5;
+	background-color:rgba(255,255,255,0.5);
 }
 
 #preserve {
@@ -85,6 +89,8 @@ a {
 	bottom: 5px;
 	right: 15px;
 	font: 22px/1.5 helvetica,sans-serif;
+	z-index: 5;
+	background-color:rgba(255,255,255,0.5);
 }
 
 #spread {
@@ -93,6 +99,8 @@ a {
 	left: 50%;
 	margin-left: -35px;
 	font: 22px/1.5 helvetica,sans-serif;
+	z-index: 5;
+	background-color:rgba(255,255,255,0.5);
 }
 
 #login {

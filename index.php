@@ -53,13 +53,12 @@ function info(){
 	<a href="/"><img src="/img/<?=$jam[filename]?>" width="<?=$jam[w]?>" height="<?=$jam[h]?>" /></a>
 
 	<div id="info-link">
-		<a href="#" onclick="return info();">?</a>
+		<a href="#" onclick="return info();" style="color: #ccc; text-decoration: none">?</a>
 	</div>
 	<div id="info-block" style="display: none">
-		from <a href="http://www.twitter.com/<?=$jam['user']?>">@<?=$jam['user']?></a>, 
-<? if ($jam['date_added']){ ?>
+		from <a href="http://www.twitter.com/<?=$jam['user']?>">@<?=$jam['user']?></a><? if ($jam['date_added']){ ?>,
 		<?=date('Y-m-d H:i', $jam['date_added'])?>
-<? } ?>
+		<? } ?>
 	</div>
 </div>
 

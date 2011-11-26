@@ -44,7 +44,7 @@
 <a href="/"><img src="/img/<?=$jam[filename]?>" width="<?=$jam[w]?>" height="<?=$jam[h]?>" id="thejam" /></a>
 
 <a href="/" id="random">Random</a>
-<a href="https://twitter.com/share" id="spread">Spread</a>
+<a href="https://twitter.com/share?url=<?=urlencode("http://thisismyj.am/p/$jam[id]")?>" id="spread">Spread</a>
 <a href="/p/<?=$jam[id]?>" id="preserve">Preserve</a>
 
 <?

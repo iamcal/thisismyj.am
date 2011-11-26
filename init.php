@@ -40,6 +40,11 @@
 
 		$sig = substr(sha1(COOKIE_SECRET.$user), 0, 10);
 		setcookie('user', $user.$sig, time()+(5*365*24*60*60), '/', 'thisismyj.am');
+
+		$t = time();
+		$user_enc = AddSlashes($user);
+
+		mysql_query(sprintf("INSERT INTO signins (user, num, last_date) VALUES ('$user_enc', 1, $t) ON DUPLICATE KEY UPDATE num=num+1, last_date=$t"));
 	}
 
 	function get_user(){

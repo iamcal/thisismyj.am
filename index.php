@@ -25,6 +25,19 @@
 		$is_perma = 0;
 	}
 
+	mysql_query("UPDATE jams SET views=views+1 WHERE id=$jam[id]");
+
+
+	# refer
+	$ref = $_SERVER['HTTP_REFERER'];
+	if ($ref && !preg_match('!http://thisismyj.am!', $ref)){
+		$jam_id = $is_perma ? $jam[id] : 0;
+		$ref_enc = AddSlashes($ref);
+		mysql_query(sprintf("INSERT INTO refs (url, jam_id, views) VALUES ('$ref_enc', $jam_id, 1) ON DUPLICATE KEY UPDATE views=views+1"));
+	}
+
+
+
 	include('head.txt');
 ?>
 

@@ -2,6 +2,10 @@ ErrorDocument 404 /404.php
 DirectoryIndex index.php
 
 RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.thisismyj\.am$ [NC]
+RewriteRule ^/?(.*)$ http://thisismyj.am/$1 [L,R=permanent]
+
+
 RewriteRule ^p/(\d+)$ /index.php?id=$1 [L]
 
 RewriteRule ^login/$ /login.php [L]

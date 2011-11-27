@@ -1,21 +1,9 @@
 <?
+	include('config.php');
 	include('lib_oauth.php');
 
-	mysql_connect('localhost', 'www-rw', 'pass');
-	mysql_select_db('thisismyjam');
-
-	define('COOKIE_SECRET', 'cookie-secret');
-
-	define('OAUTH_CONSUMER_KEY',	'oauth-key');
-	define('OAUTH_CONSUMER_SECRET',	'oauth-secret');
-
-	define('OAUTH_REQUEST_URL',	'https://api.twitter.com/oauth/request_token');
-	define('OAUTH_ACCESS_URL',	'https://api.twitter.com/oauth/access_token');
-	define('OAUTH_AUTHORIZE_URL',	'https://api.twitter.com/oauth/authorize');
-
-	define('OAUTH_CALLBACK_URL',	'http:/thisismyj.am/auth/');
-
-	define('OAUTH_PROTECTED_URL',	'http://api.twitter.com/1/statuses/user_timeline.json?count=1');
+	mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
+	mysql_select_db(MYSQL_DB);
 
 	$GLOBALS['user'] = get_user();
 

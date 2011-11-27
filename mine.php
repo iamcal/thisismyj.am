@@ -18,7 +18,8 @@
 		$target = "jam{$num}.jpg";
 
 		# convert
-		echo shell_exec("convert \"$url\" -resize 600x600\> $out/$target 2>&1");
+		$url_enc = escapeshellarg($url);
+		echo shell_exec("convert $url_enc -resize 600x600\> $out/$target 2>&1");
 
 		# get size
 		list($width, $height) = getimagesize("$out/$target");

@@ -5,10 +5,17 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.thisismyj\.am$ [NC]
 RewriteRule ^/?(.*)$ http://thisismyj.am/$1 [L,R=permanent]
 
-
 RewriteRule ^p/(\d+)$ /index.php?id=$1 [L]
 
 RewriteRule ^login/$ /login.php [L]
 RewriteRule ^logout/$ /logout.php [L]
 RewriteRule ^auth/$ /auth.php [L]
 RewriteRule ^mine/$ /mine.php [L]
+
+AuthType Basic
+AuthName "Restricted Files"
+AuthUserFile /var/svn/http_users
+<Files approve.php>
+	Require user cal
+</Files>
+

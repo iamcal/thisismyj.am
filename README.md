@@ -1,5 +1,6 @@
 # Installation
 
+    apt-get install -y imagemagick
     cd /var/www/html
     git clone git@github.com:iamcal/thisismyj.am.git
     cd thisismyj.am

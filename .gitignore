@@ -1,3 +1,4 @@
-config.php
-img/*.jpg
+www/img/*.jpg
 secrets/mysql_password
+secrets/cookie_secret
+secrets/twitter_oauth_secret

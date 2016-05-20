@@ -1,5 +1,5 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 	$keys = array(
 		'oauth_key'		=> OAUTH_CONSUMER_KEY,
@@ -20,5 +20,3 @@
 	}else{
 		dump_last_request();
 	}
-
-?>

@@ -1,12 +1,12 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 	if (!$user){
 		header("location: /login/");
 		exit;
 	}
 
-	$out = '/var/www/thisismyj.am/img';
+	$out = dirname(__FILE__).'/img/';
 
 	if ($_POST['url']) do {
 
@@ -30,13 +30,16 @@
 		}
 
 		# insert
-		$sql = sprintf("INSERT INTO jams (srcurl, filename, w, h, user, date_added) VALUES ('%s', '%s', %d, %d, '%s', %d)",
-			AddSlashes($url), AddSlashes($target), intval($width), intval($height), AddSlashes($user), time()
-		);
-		mysql_query($sql);
+		$ret = db_insert('jams', array(
+			'srcurl'	=> $url,
+			'filename'	=> $target,
+			'w'		=> $width,
+			'h'		=> $height,
+			'user'		=> $user,
+			'date_added'	=> time(),
+		));
 
-		$id = mysql_insert_id();
-		header("location: /p/$id");
+		header("location: /p/{$ret['insert_id']}");
 		exit;
 
 	} while (0);
@@ -53,7 +56,7 @@
 
 	$subtitle = 'My Jams';
 
-	include('head.txt');
+	include('../include/head.txt');
 
 ?>
 
@@ -78,10 +81,11 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 
 <table cellpadding="8">
 <?
-	$user_enc = AddSlashes($user);
+	$ret = db_fetch("SELECT * FROM jams WHERE user=:user AND is_deleted=0 ORDER BY date_added DESC", array(
+		'user' => $user,
+	));
 
-	$result = mysql_query("SELECT * FROM jams WHERE user='$user_enc' AND is_deleted=0 ORDER BY date_added DESC");
-	while ($row = mysql_fetch_array($result)){
+	foreach ($ret['rows'] as $row){
 
 		if ($row['w'] >= $row['h']){
 			$w = 100;
@@ -106,7 +110,7 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 	</tr>
 <?
 	}
-	if (!mysql_num_rows($result)){
+	if (!count($ret['rows'])){
 ?>
 	<tr>
 		<td>Your don't have any Jams yet! Add one above.</td>
@@ -119,5 +123,5 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 </div>
 
 <?
-	include('foot.txt');
+	include('../include/foot.txt');
 ?>

@@ -1,15 +1,17 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 
 	if ($_POST['id']){
-		$id = intval($_POST['id']);
-		$state = $_POST['is_ok'] ? 1 : 2;
-		mysql_query("UPDATE jams SET is_approved=$state WHERE id=$id");
+
+		db_query("UPDATE jams SET is_approved=:state WHERE id=:id", array(
+			'state'	=> $_POST['is_ok'] ? 1 : 2,
+			'id'	=> $_POST['id'],
+		));
 	}
 
 
-	$row = mysql_fetch_array(mysql_query("SELECT * FROM jams WHERE is_approved=0 ORDER BY date_added ASC LIMIT 1"));
+	$row = db_single(db_fetch("SELECT * FROM jams WHERE is_approved=0 ORDER BY date_added ASC LIMIT 1"));
 
 	if (!$row['id']){
 		die('nothing to approve');

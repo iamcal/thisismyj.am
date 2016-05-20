@@ -1,5 +1,5 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 	#
 	# get a random key, unless one was passed in
@@ -9,8 +9,9 @@
 	$is_perma = 1;
 
 	if ($_GET['id']){
-		$id = intval($_GET['id']);
-		$jam = mysql_fetch_array(mysql_query("SELECT * FROM jams WHERE id='$id' AND is_deleted=0"));
+		$jam = db_single(db_fetch("SELECT * FROM jams WHERE id=:id AND is_deleted=0", array(
+			'id' => $_GET['id'],
+		)));
 
 		if (!$jam['id']){
 			include('head.txt');
@@ -21,24 +22,29 @@
 	}
 
 	if (!$jam['id']){
-		$jam = mysql_fetch_array(mysql_query("SELECT * FROM jams WHERE is_approved=1 AND is_deleted=0 ORDER BY RAND() LIMIT 1"));
+		$jam = db_single(db_fetch("SELECT * FROM jams WHERE is_approved=1 AND is_deleted=0 ORDER BY RAND() LIMIT 1"));
 		$is_perma = 0;
 	}
 
-	mysql_query("UPDATE jams SET views=views+1 WHERE id=$jam[id]");
+	db_query("UPDATE jams SET views=views+1 WHERE id=:id", array(
+		'id' => $jam[id],
+	));
 
 
 	# refer
 	$ref = $_SERVER['HTTP_REFERER'];
+
 	if ($ref && !preg_match('!http://thisismyj.am!', $ref)){
-		$jam_id = $is_perma ? $jam[id] : 0;
-		$ref_enc = AddSlashes($ref);
-		mysql_query(sprintf("INSERT INTO refs (url, jam_id, views) VALUES ('$ref_enc', $jam_id, 1) ON DUPLICATE KEY UPDATE views=views+1"));
+
+		db_query("INSERT INTO refs (url, jam_id, views) VALUES (:ref, :id, 1) ON DUPLICATE KEY UPDATE views=views+1", array(
+			'id'	=> $is_perma ? $jam[id] : 0,
+			'ref'	=> $ref,
+		));
 	}
 
 
 
-	include('head.txt');
+	include('../include/head.txt');
 ?>
 
 <script>
@@ -67,5 +73,5 @@ function info(){
 <a href="/p/<?=$jam[id]?>" id="preserve">Preserve</a>
 
 <?
-	include('foot.txt');
+	include('../include/foot.txt');
 ?>

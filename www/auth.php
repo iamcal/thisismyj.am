@@ -1,5 +1,5 @@
 <?
-	include('init.php');
+	include('../include/init.php');
 
 	$keys = array(
 		'oauth_key'		=> OAUTH_CONSUMER_KEY,
@@ -25,6 +25,11 @@
 		exit;
 	}
 
+
+	#
+	# figure out the caller's twitter name
+	#
+
 	$ret = oauth_request($keys, OAUTH_PROTECTED_URL);
 	if (!strlen($ret)) dump_last_request();
 
@@ -41,4 +46,3 @@
 	set_user($user);
 	header('location: /mine/?signedin=1');
 	exit;
-?>

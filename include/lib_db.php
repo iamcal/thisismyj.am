@@ -1,10 +1,4 @@
 <?php
-	$GLOBALS['cfg']['db_host'] = 'localhost';
-	$GLOBALS['cfg']['db_name'] = 'thisismyjam';
-	$GLOBALS['cfg']['db_user'] = 'thisismyjam';
-	$GLOBALS['cfg']['db_pass'] = trim(file_get_contents(dirname(__FILE__).'/../secrets/mysql_password'));
-
-
 	function db_connect(){
 
 		if (!$GLOBALS['dbh']){
@@ -19,13 +13,35 @@
 		$dbh = db_connect();
 
 		$stmt = $dbh->prepare($sql);
+		if (!$stmt){
+			$info = $dbh->errorInfo();
+
+			return array(
+				'ok'	=> false,
+				'error'	=> "$info[1] $info[2]",
+			);
+		}
+
 		foreach ($bind as $k => $v){
 			$stmt->bindParam(':'.$k, $bind[$k]);
 		}
 		$ret = $stmt->execute();
+
+		if ($ret){
+			return array(
+				'ok'		=> true,
+				'affected_rows' => $stmt->rowCount(),
+				'dbh'		=> $dbh,
+				'stmt'		=> $stmt,
+			);
+		}
+
+		$info = $stmt->errorInfo();
+
 		return array(
-			'ok'		=> !!$ret,
-			'affected_rows'	=> $stmt->rowCount(),
+			'ok'		=> false,
+			'error'		=> "$info[1] $info[2]",
+			'affected_rows' => 0,
 			'dbh'		=> $dbh,
 			'stmt'		=> $stmt,
 		);
@@ -65,6 +81,22 @@
 		}
 
 		return $ret;
+	}
+
+	function db_update($table, $fields, $where, $bind){
+
+		$bits = array();
+		$i = 1;
+
+		foreach ($fields as $k => $v){
+			$bind["f$i"] = $v;
+			$bits[] = "{$k}=:f{$i}";
+			$i++;
+		}
+
+		$set = implode(', ', $bits);
+
+		return db_query("UPDATE {$table} SET {$set} WHERE {$where}", $bind);
 	}
 
 	function db_single($ret){

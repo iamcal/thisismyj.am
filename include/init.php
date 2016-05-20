@@ -1,6 +1,11 @@
 <?
 	include('config.php');
 
+	$GLOBALS['cfg']['db_host'] = 'localhost';
+	$GLOBALS['cfg']['db_name'] = 'thisismyjam';
+	$GLOBALS['cfg']['db_user'] = 'thisismyjam';
+	$GLOBALS['cfg']['db_pass'] = trim(file_get_contents(dirname(__FILE__).'/../secrets/mysql_password'));
+
 	include('lib_db.php');
 	include('lib_oauth.php');
 

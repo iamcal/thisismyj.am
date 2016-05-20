@@ -26,8 +26,8 @@
 
 	function set_user($user){
 
-		$sig = substr(sha1(COOKIE_SECRET.$user), 0, 10);
-		setcookie('user', $user.$sig, time()+(5*365*24*60*60), '/', 'thisismyj.am');
+		$sig = hash_hmac('sha256', $user, COOKIE_SECRET);
+		setcookie('user', $user.'|'.$sig, time()+(5*365*24*60*60), '/', 'thisismyj.am');
 
 		db_query("INSERT INTO signins (user, num, last_date) VALUES (:user, 1, :time) ON DUPLICATE KEY UPDATE num=num+1, last_date=:time", array(
 			'user'	=> $user,
@@ -36,11 +36,11 @@
 	}
 
 	function get_user(){
+		$bits = explode('|', $_COOKIE['user']);
+		$sig = array_pop($bits);
+		$user = implode('|', $bits);
 
-		$user = substr($_COOKIE['user'], 0, -10);
-		$sig = substr($_COOKIE['user'], -10);
-
-		$test_sig = substr(sha1(COOKIE_SECRET.$user), 0, 10);
+		$test_sig = hash_hmac('sha256', $user, COOKIE_SECRET);
 
 		if ($test_sig == $sig) return $user;
 

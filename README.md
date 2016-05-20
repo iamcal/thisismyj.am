@@ -9,3 +9,7 @@
     cd db
     ./init_db.sh
 
+You'll need to manaully place the following secrets:
+
+* `secrets/cookie_secret` - the cookie signing secret - can be fresh per host
+* `secrets/twitter_oauth_secret` - OAuth secret key from Twitter

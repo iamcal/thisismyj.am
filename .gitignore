@@ -1,2 +1,3 @@
 config.php
 img/*.jpg
+secrets/mysql_password

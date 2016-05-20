@@ -2,3 +2,6 @@ www/img/*.jpg
 secrets/mysql_password
 secrets/cookie_secret
 secrets/twitter_oauth_secret
+secrets/duo_app_key
+secrets/session_crypto_key
+secrets/duo_secret_key

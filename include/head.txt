@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>
-<? if ($subtitle){ ?><?=$subtitle?> | <? } ?>This Is My Jam</title>
+<? if ($subtitle){ ?><?=$subtitle?> | <? } ?>This Is My Jam!</title>
 <!--
 
 By Cal Henderson / iamcal.com / @iamcal

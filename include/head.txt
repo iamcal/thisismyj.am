@@ -68,10 +68,10 @@ a {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: <?=$jam[w]?>px;
-	height: <?=$jam[h]?>px;
-	margin-top: -<?=$jam[h]/2?>px;
-	margin-left: -<?=$jam[w]/2?>px;
+	width: <?=$jam['w']?>px;
+	height: <?=$jam['h']?>px;
+	margin-top: -<?=$jam['h']/2?>px;
+	margin-left: -<?=$jam['w']/2?>px;
 	z-index: 1;
 
 	text-align: center;

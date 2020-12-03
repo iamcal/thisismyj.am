@@ -98,7 +98,7 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 		$check = $row['date_added'];
 ?>
 	<tr valign="top">
-		<td><a href="/p/<?=$row['id']?>"><img src="/img/<?=$row[filename]?>" width="<?=$w?>" height="<?=$h?>" /></a></td>
+		<td><a href="/p/<?=$row['id']?>"><img src="/img/<?=$row['filename']?>" width="<?=$w?>" height="<?=$h?>" /></a></td>
 		<td>
 			Permalink: <a href="/p/<?=$row['id']?>">http://thisismyj.am/p/<?=$row['id']?></a><br />
 			<br />

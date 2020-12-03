@@ -12,8 +12,8 @@
 
 		$url = oauth_get_auth_url($keys, OAUTH_AUTHORIZE_URL);
 
-		setcookie('my_req_key',		$keys[request_key],	0, '/', 'thisismyj.am');
-		setcookie('my_req_secret',	$keys[request_secret],	0, '/', 'thisismyj.am');
+		setcookie('my_req_key',		$keys['request_key'],		0, '/', 'thisismyj.am');
+		setcookie('my_req_secret',	$keys['request_secret'],	0, '/', 'thisismyj.am');
 
 		header("location: $url");
 		exit;

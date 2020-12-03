@@ -8,6 +8,6 @@
 	define('OAUTH_ACCESS_URL',	'https://api.twitter.com/oauth/access_token');
 	define('OAUTH_AUTHORIZE_URL',	'https://api.twitter.com/oauth/authorize');
 
-	define('OAUTH_CALLBACK_URL',	'http://thisismyj.am/oauth/');
+	define('OAUTH_CALLBACK_URL',	'https://thisismyj.am/oauth/');
 
 	define('OAUTH_PROTECTED_URL',	'https://api.twitter.com/1.1/statuses/user_timeline.json?count=1');

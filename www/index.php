@@ -27,17 +27,17 @@
 	}
 
 	db_query("UPDATE jams SET views=views+1 WHERE id=:id", array(
-		'id' => $jam[id],
+		'id' => $jam['id'],
 	));
 
 
 	# refer
 	$ref = $_SERVER['HTTP_REFERER'];
 
-	if ($ref && !preg_match('!http://thisismyj.am!', $ref)){
+	if ($ref && !preg_match('!https?://thisismyj.am!', $ref)){
 
 		db_query("INSERT INTO refs (url, jam_id, views) VALUES (:ref, :id, 1) ON DUPLICATE KEY UPDATE views=views+1", array(
-			'id'	=> $is_perma ? $jam[id] : 0,
+			'id'	=> $is_perma ? $jam['id'] : 0,
 			'ref'	=> $ref,
 		));
 	}
@@ -56,7 +56,7 @@ function info(){
 </script>
 
 <div id="thejam">
-	<a href="/"><img src="/img/<?=$jam[filename]?>" width="<?=$jam[w]?>" height="<?=$jam[h]?>" /></a>
+	<a href="/"><img src="/img/<?=$jam['filename']?>" width="<?=$jam['w']?>" height="<?=$jam['h']?>" /></a>
 
 	<div id="info-link">
 		<a href="#" onclick="return info();" style="color: #ccc; text-decoration: none">?</a>
@@ -70,7 +70,7 @@ function info(){
 
 <a href="/" id="random">Random</a>
 <a href="https://twitter.com/share?url=<?=urlencode("http://thisismyj.am/p/$jam[id]")?>" id="spread">Spread</a>
-<a href="/p/<?=$jam[id]?>" id="preserve">Preserve</a>
+<a href="/p/<?=$jam['id']?>" id="preserve">Preserve</a>
 
 <?
 	include('../include/foot.txt');

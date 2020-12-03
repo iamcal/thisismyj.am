@@ -15,7 +15,7 @@
 
 	$params = array();
 	# OAuth 1.0a servers will return an extra oauth_verifier argument
-	if (isset($_GET[oauth_verifier])) $params[oauth_verifier] = $_GET[oauth_verifier];
+	if (isset($_GET['oauth_verifier'])) $params['oauth_verifier'] = $_GET['oauth_verifier'];
 
 	$ok = oauth_get_access_token($keys, OAUTH_ACCESS_URL, $params);
 

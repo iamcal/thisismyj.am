@@ -5,7 +5,7 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.thisismyj\.am$ [NC]
 RewriteRule ^/?(.*)$ http://thisismyj.am/$1 [L,R=permanent]
 
-RewriteRule ^p/(\d+)$ /index.php?id=$1 [L]
+RewriteRule ^p/(\d+)$ /index.php?id=$1 [L,B,QSA]
 
 RewriteRule ^login/$ /login.php [L]
 RewriteRule ^logout/$ /logout.php [L]

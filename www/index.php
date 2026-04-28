@@ -8,7 +8,7 @@
 	$jam = array();
 	$is_perma = 1;
 
-	if ($_GET['id']){
+	if ($_GET['id'] ?? null){
 		$jam = db_single(db_fetch("SELECT * FROM jams WHERE id=:id AND is_deleted=0", array(
 			'id' => $_GET['id'],
 		)));
@@ -21,7 +21,7 @@
 		}
 	}
 
-	if (!$jam['id']){
+	if (!isset($jam['id'])){
 		$jam = db_single(db_fetch("SELECT * FROM jams WHERE is_approved=1 AND is_deleted=0 ORDER BY RAND() LIMIT 1"));
 		$is_perma = 0;
 	}
@@ -32,7 +32,7 @@
 
 
 	# refer
-	$ref = $_SERVER['HTTP_REFERER'];
+	$ref = $_SERVER['HTTP_REFERER'] ?? '';
 
 	if ($ref && !preg_match('!https?://thisismyj.am!', $ref)){
 

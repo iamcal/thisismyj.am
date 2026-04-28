@@ -41,7 +41,7 @@
 	}
 
 	function get_user(){
-		$bits = explode('|', $_COOKIE['user']);
+		$bits = explode('|', $_COOKIE['user'] ?? '');
 		$sig = array_pop($bits);
 		$user = implode('|', $bits);
 

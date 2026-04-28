@@ -154,8 +154,8 @@
 
 		$url = "{$parts['scheme']}://{$parts['host']}{$port}{$parts['path']}"; 
 
-		if (strlen($path['fragments'])){
-			$url .= "#{$part['fragment']}";
+		if (strlen($parts['fragments'] ?? '')){
+			$url .= "#{$parts['fragment']}";
 		}
 
 		return $url;
@@ -236,8 +236,8 @@
 		$url = oauth_sign_get($key_bucket, $url, $params);
 		$bits = oauth_url_to_hash($url);
 
-		$key_bucket['request_key']	= $bits['oauth_token'];
-		$key_bucket['request_secret']	= $bits['oauth_token_secret'];
+		$key_bucket['request_key']	= $bits['oauth_token'] ?? null;
+		$key_bucket['request_secret']	= $bits['oauth_token_secret'] ?? null;
 
 		if ($key_bucket['request_key'] && $key_bucket['request_secret']){
 			return 1;
@@ -255,7 +255,9 @@
 
 		$out = array();
 		foreach ($bits as $bit){
-			list($k, $v) = explode('=', $bit, 2);
+			$list = explode('=', $bit, 2);
+			$k = $list[0] ?? null;
+			$v = $list[1] ?? null;
 			$out[urldecode($k)] = urldecode($v);
 		}
 

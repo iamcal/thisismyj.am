@@ -8,15 +8,16 @@
 	$jam = array();
 	$is_perma = 1;
 
-	if ($_GET['id'] ?? null){
+	$id = $_GET['id'] ?? null;
+	if ($id && is_string($id)){
 		$jam = db_single(db_fetch("SELECT * FROM jams WHERE id=:id AND is_deleted=0", array(
-			'id' => $_GET['id'],
+			'id' => $id,
 		)));
 
-		if (!$jam['id']){
-			include('head.txt');
+		if (empty($jam['id'])){
+			include('../include/head.txt');
 			echo "<h1 style=\"text-align: center; margin-top: 30%; font-size: 40px\">Jam not found :(</h1>";
-			include('foot.txt');
+			include('../include/foot.txt');
 			exit;
 		}
 	}

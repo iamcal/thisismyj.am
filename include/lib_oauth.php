@@ -340,7 +340,6 @@
 		$response = curl_exec($ch);
 		$headers = curl_getinfo($ch);
 
-		curl_close($ch);
 
 		$GLOBALS['oauth_last_request'] = array(
 			'request'	=> array(

@@ -46,7 +46,7 @@
 
 	if ($_GET['d']){
 
-		db_update('james', [
+		db_update('jams', [
 			'is_deleted' => 1,
 		], "id=:id AND user=:user AND date_added=:date_added", [
 			'id'		=> intval($_GET['d'] ?? null),

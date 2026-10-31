@@ -45,11 +45,15 @@
 	} while (0);
 
 	if ($_GET['d']){
-		$id = intval($_GET['d']);
-		$user_enc = AddSlashes($user);
-		$c = intval($_GET['c']);
 
-		mysql_query("UPDATE jams SET is_deleted=1 WHERE id=$id AND user='$user_enc' AND date_added=$c");
+		db_update('james', [
+			'is_deleted' => 1,
+		], "id=:id AND user=:user AND date_added=:date_added", [
+			'id'		=> intval($_GET['d'] ?? null),
+			'user'		=> $user,
+			'date_added'	=> $_GET['c'] ?? null,
+		]);
+
 		header('location: /mine/?deleted=1');
 		exit;
 	}

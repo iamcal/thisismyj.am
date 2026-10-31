@@ -15,7 +15,7 @@
 		)));
 
 		if (empty($jam['id'])){
-			include('../include/head.txt');
+			include('../include/head.php');
 			echo "<h1 style=\"text-align: center; margin-top: 30%; font-size: 40px\">Jam not found :(</h1>";
 			include('../include/foot.txt');
 			exit;
@@ -45,7 +45,7 @@
 
 
 
-	include('../include/head.txt');
+	include('../include/head.php');
 ?>
 
 <script>

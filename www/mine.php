@@ -56,7 +56,7 @@
 
 	$subtitle = 'My Jams';
 
-	include('../include/head.txt');
+	include('../include/head.php');
 
 ?>
 

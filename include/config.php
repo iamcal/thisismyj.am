@@ -1,4 +1,4 @@
-<?
+<?php
 	define('COOKIE_SECRET', trim(file_get_contents(dirname(__FILE__).'/../secrets/cookie_secret')));
 
 	define('OAUTH_CONSUMER_KEY',	'TawPJxhxuQtqdioXrgCIhQ');

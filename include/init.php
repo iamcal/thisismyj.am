@@ -1,4 +1,4 @@
-<?
+<?php
 	include('config.php');
 
 	$GLOBALS['cfg']['db_host'] = 'localhost';

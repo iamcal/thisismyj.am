@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>
-<? if ($subtitle ?? null){ ?><?=$subtitle?> | <? } ?>This Is My Jam!</title>
+<?php if ($subtitle ?? null){ ?><?=$subtitle?> | <?php } ?>This Is My Jam!</title>
 <!--
 
 By Cal Henderson / iamcal.com / @iamcal
@@ -150,13 +150,13 @@ a {
 	<a href="/" id="site_name" title="This Is My Jam"></a>
 
 	<div style="padding: 5px 0 0 20px">
-<? if ($user){ ?>
+<?php if ($user){ ?>
 		Hi @<?=$user?>!
 		&nbsp;&nbsp;
 		<a href="/">Home</a> | <a href="/mine/">My Jams</a> | <a href="/logout/">Log Out</a>
-<? }else{ ?>
+<?php }else{ ?>
 		<a href="/login/">Log In</a> via Twitter to upload your Jams
-<? } ?>
+<?php } ?>
 	</div>
 </div>
 

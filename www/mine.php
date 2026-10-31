@@ -1,4 +1,4 @@
-<?
+<?php
 	include('../include/init.php');
 
 	if (!$user){
@@ -64,9 +64,9 @@
 
 <h1>Add Jam</h1>
 
-<? if ($error_too_small){ ?>
+<?php if ($error_too_small){ ?>
 	<p style="background-color: #600">That Jam is too small!</p>
-<? } ?>
+<?php } ?>
 
 <p>Enter a URL to your Jam image, must be at least 400px on the longest edge.</p>
 
@@ -80,7 +80,7 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 <h1>My Jams</h1>
 
 <table cellpadding="8">
-<?
+<?php
 	$ret = db_fetch("SELECT * FROM jams WHERE user=:user AND is_deleted=0 ORDER BY date_added DESC", array(
 		'user' => $user,
 	));
@@ -108,20 +108,20 @@ Image URL: <input type="text" name="url" style="width: 400px" />
 			<a href="/mine/?d=<?=$row['id']?>&c=<?=$check?>" style="color: #933" onclick="return window.confirm('Are you sure you want to delete this Jam?');">Delete Jam</a>
 		</td>
 	</tr>
-<?
+<?php
 	}
 	if (!count($ret['rows'])){
 ?>
 	<tr>
 		<td>Your don't have any Jams yet! Add one above.</td>
 	</tr>
-<?
+<?php
 	}
 ?>
 </table>
 
 </div>
 
-<?
+<?php
 	include('../include/foot.txt');
 ?>

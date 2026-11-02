@@ -256,8 +256,8 @@
 		$out = array();
 		foreach ($bits as $bit){
 			$list = explode('=', $bit, 2);
-			$k = $list[0] ?? null;
-			$v = $list[1] ?? null;
+			$k = $list[0];
+			$v = $list[1] ?? '';
 			$out[urldecode($k)] = urldecode($v);
 		}
 
